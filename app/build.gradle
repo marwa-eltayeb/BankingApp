@@ -41,6 +41,7 @@ dependencies {
 
     implementation "androidx.core:core-ktx:$coreKtxVersion"
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
+    implementation "androidx.activity:activity-ktx:$rootProject.activityVersion"
 
     // UI Design
     implementation "com.google.android.material:material:$rootProject.materialVersion"

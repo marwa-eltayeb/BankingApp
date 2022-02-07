@@ -1,7 +1,9 @@
 package com.marwaeltayeb.banking
 
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Entity(tableName = "client_table")
 data class Client (
     val name: String,
     val email: String,

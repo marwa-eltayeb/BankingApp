@@ -17,6 +17,7 @@ buildscript {
 ext {
     coreKtxVersion = '1.7.0'
     appcompatVersion = '1.4.1'
+    activityVersion = '1.2.3'
 
     materialVersion = '1.5.0'
     recyclerviewVersion = '1.2.1'
