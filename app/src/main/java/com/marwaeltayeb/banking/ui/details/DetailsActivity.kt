@@ -1,5 +1,6 @@
 package com.marwaeltayeb.banking.ui.details
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -7,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.marwaeltayeb.banking.data.model.Client
 import com.marwaeltayeb.banking.databinding.ActivityDetailsBinding
+import com.marwaeltayeb.banking.ui.transfer.TransferActivity
 import com.marwaeltayeb.banking.util.Const.Companion.CLIENT
 
 class DetailsActivity : AppCompatActivity() {
@@ -41,10 +43,14 @@ class DetailsActivity : AppCompatActivity() {
         alert.setView(editAmount)
 
         alert.setPositiveButton("Send") { _, _ ->
-            val amount: String = editAmount.text.toString()
+            val amountString: String = editAmount.text.toString()
 
-            if (amount.isNotEmpty()) {
-                Toast.makeText(applicationContext, amount, Toast.LENGTH_SHORT).show()
+            if (amountString.isNotEmpty()) {
+                Toast.makeText(applicationContext, amountString, Toast.LENGTH_SHORT).show()
+                val amount: Double = amountString.toDouble()
+                intent = Intent(this, TransferActivity::class.java)
+                intent.putExtra("amount", amount)
+                startActivity(intent)
             }
         }
 

@@ -20,7 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.details.DetailsActivity"
             android:exported="false"
@@ -29,6 +28,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.marwaeltayeb.banking.ui.details.DetailsActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.transfer.TransferActivity"
+            android:exported="false"
+            android:label="Transfer"
+            android:parentActivityName=".ui.transfer.TransferActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.marwaeltayeb.banking.ui.transfer.TransferActivity" />
         </activity>
     </application>
 </manifest>
