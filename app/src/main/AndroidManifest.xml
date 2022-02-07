@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Banking">
+
         <activity
             android:name=".ui.clients.MainActivity"
             android:exported="true">
@@ -19,6 +20,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <activity
+            android:name=".ui.details.DetailsActivity"
+            android:exported="false"
+            android:label="Client Details"
+            android:parentActivityName=".ui.details.DetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.marwaeltayeb.banking.ui.details.DetailsActivity" />
+        </activity>
+    </application>
 </manifest>

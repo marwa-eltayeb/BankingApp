@@ -12,6 +12,12 @@ import com.marwaeltayeb.banking.data.model.Client
 
 class ClientAdapter : ListAdapter<Client, ClientAdapter.ClientViewHolder>(Clients_COMPARATOR) {
 
+    private lateinit var onItemClickListener: OnItemClickListener
+
+    interface OnItemClickListener {
+        fun onItemClick(client: Client)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClientViewHolder {
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.item_client_list, parent, false)
@@ -21,6 +27,16 @@ class ClientAdapter : ListAdapter<Client, ClientAdapter.ClientViewHolder>(Client
     override fun onBindViewHolder(holder: ClientViewHolder, position: Int) {
         val currentClient = getItem(position)
         holder.bind(currentClient)
+
+        if(::onItemClickListener.isInitialized){
+            holder.itemView.setOnClickListener {
+                onItemClickListener.onItemClick(currentClient)
+            }
+        }
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener){
+        onItemClickListener = listener
     }
 
     class ClientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
