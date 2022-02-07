@@ -1,10 +1,12 @@
-package com.marwaeltayeb.banking
+package com.marwaeltayeb.banking.ui.clients
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.marwaeltayeb.banking.BankApplication
+import com.marwaeltayeb.banking.R
 
 class MainActivity : AppCompatActivity() {
 

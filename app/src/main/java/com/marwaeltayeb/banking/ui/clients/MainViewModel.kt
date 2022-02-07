@@ -1,6 +1,8 @@
-package com.marwaeltayeb.banking
+package com.marwaeltayeb.banking.ui.clients
 
 import androidx.lifecycle.*
+import com.marwaeltayeb.banking.data.BankRepository
+import com.marwaeltayeb.banking.data.model.Client
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val bankRepository: BankRepository) : ViewModel() {

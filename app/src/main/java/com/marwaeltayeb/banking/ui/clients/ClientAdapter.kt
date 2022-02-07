@@ -1,4 +1,4 @@
-package com.marwaeltayeb.banking
+package com.marwaeltayeb.banking.ui.clients
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.marwaeltayeb.banking.R
+import com.marwaeltayeb.banking.data.model.Client
 
 class ClientAdapter : ListAdapter<Client, ClientAdapter.ClientViewHolder>(Clients_COMPARATOR) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClientAdapter.ClientViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClientViewHolder {
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.item_client_list, parent, false)
         return ClientViewHolder(view)
