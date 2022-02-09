@@ -6,11 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.marwaeltayeb.banking.data.model.Client
+import com.marwaeltayeb.banking.data.model.Transaction
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [Client::class], version = 1)
+@Database(entities = [Client::class, Transaction::class], version = 1)
 abstract class BankDatabase : RoomDatabase(){
 
     abstract fun bankDao(): BankDao

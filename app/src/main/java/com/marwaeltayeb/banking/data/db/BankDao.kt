@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.marwaeltayeb.banking.data.model.Client
+import com.marwaeltayeb.banking.data.model.Transaction
 
 @Dao
 interface BankDao {
@@ -18,4 +19,13 @@ interface BankDao {
 
     @Query("DELETE FROM client_table")
     suspend fun deleteAll()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertTransaction(transaction: Transaction): Long
+
+    @Query("Update client_table set balance = balance - :amount where name = :transferor")
+    suspend fun decreaseMoney(amount : Double, transferor: String)
+
+    @Query("Update client_table set balance = balance + :amount where name = :transferee")
+    suspend fun increaseMoney(amount : Double, transferee: String)
 }

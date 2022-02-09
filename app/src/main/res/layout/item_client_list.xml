@@ -49,8 +49,8 @@
             android:layout_alignParentEnd="true"
             android:gravity="center|start"
             android:padding="5dp"
+            android:textColor="@color/red"
             android:textSize="18sp"
-            android:textColor="@color/vDarkGray"
             tools:text="$ 4000.00" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

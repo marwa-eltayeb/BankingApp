@@ -47,7 +47,9 @@ class ClientAdapter : ListAdapter<Client, ClientAdapter.ClientViewHolder>(Client
         fun bind(client: Client) {
             txtName.text = client.name
             txtEmail.text = client.email
-            txtBalance.text = client.balance.toString()
+            val amountFormatted: String = itemView.rootView.context.getString(R.string.amount, client.balance)
+
+            txtBalance.text = amountFormatted
         }
     }
 }
