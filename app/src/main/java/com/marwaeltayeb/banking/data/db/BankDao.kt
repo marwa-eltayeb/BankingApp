@@ -28,4 +28,7 @@ interface BankDao {
 
     @Query("Update client_table set balance = balance + :amount where name = :transferee")
     suspend fun increaseMoney(amount : Double, transferee: String)
+
+    @Query("SELECT * FROM transaction_table")
+    fun getTransations(): LiveData<List<Transaction>>
 }

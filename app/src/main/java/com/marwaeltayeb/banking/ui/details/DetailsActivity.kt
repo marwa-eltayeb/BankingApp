@@ -18,8 +18,8 @@ import android.content.Context
 import android.view.ViewGroup
 
 import android.widget.FrameLayout
-
-
+import com.marwaeltayeb.banking.util.Const.Companion.AMOUNT
+import com.marwaeltayeb.banking.util.Const.Companion.TRANSFEROR
 
 
 class DetailsActivity : AppCompatActivity() {
@@ -64,8 +64,8 @@ class DetailsActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, amountString, Toast.LENGTH_SHORT).show()
                 val amount: Double = amountString.toDouble()
                 intent = Intent(this, TransferActivity::class.java)
-                intent.putExtra("transferor", currentClient.name)
-                intent.putExtra("amount", amount)
+                intent.putExtra(TRANSFEROR, currentClient.name)
+                intent.putExtra(AMOUNT, amount)
                 startActivity(intent)
             }
         }

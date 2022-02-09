@@ -33,6 +33,12 @@
         <activity
             android:name=".ui.transfer.TransferActivity"
             android:exported="false"
-            android:label="Transfer Money"/>
+            android:label="Transfer Money" />
+
+        <activity
+            android:name=".ui.transactions.TransactionActivity"
+            android:exported="false"
+            android:label="Transactions" />
     </application>
+
 </manifest>

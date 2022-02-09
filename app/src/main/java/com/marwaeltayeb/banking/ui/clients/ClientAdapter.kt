@@ -1,14 +1,13 @@
 package com.marwaeltayeb.banking.ui.clients
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.marwaeltayeb.banking.R
 import com.marwaeltayeb.banking.data.model.Client
+import com.marwaeltayeb.banking.databinding.ItemClientListBinding
 
 class ClientAdapter : ListAdapter<Client, ClientAdapter.ClientViewHolder>(Clients_COMPARATOR) {
 
@@ -19,9 +18,8 @@ class ClientAdapter : ListAdapter<Client, ClientAdapter.ClientViewHolder>(Client
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClientViewHolder {
-        val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_client_list, parent, false)
-        return ClientViewHolder(view)
+        val binding = ItemClientListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ClientViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ClientViewHolder, position: Int) {
@@ -39,17 +37,12 @@ class ClientAdapter : ListAdapter<Client, ClientAdapter.ClientViewHolder>(Client
         onItemClickListener = listener
     }
 
-    class ClientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val txtName: TextView = itemView.findViewById(R.id.txtName)
-        private val txtEmail: TextView = itemView.findViewById(R.id.txtEmail)
-        private val txtBalance: TextView = itemView.findViewById(R.id.txtBalance)
-
+    class ClientViewHolder(var binding: ItemClientListBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(client: Client) {
-            txtName.text = client.name
-            txtEmail.text = client.email
-            val amountFormatted: String = itemView.rootView.context.getString(R.string.amount, client.balance)
-
-            txtBalance.text = amountFormatted
+            binding.txtName.text = client.name
+            binding.txtEmail.text = client.email
+            val formattedAmount: String = itemView.rootView.context.getString(R.string.amount, client.balance)
+            binding.txtBalance.text = formattedAmount
         }
     }
 }
@@ -60,6 +53,6 @@ private val Clients_COMPARATOR = object : DiffUtil.ItemCallback<Client>() {
     }
 
     override fun areContentsTheSame(oldItem: Client, newItem: Client): Boolean {
-        return oldItem.name == newItem.name
+        return oldItem.client_id == newItem.client_id
     }
 }

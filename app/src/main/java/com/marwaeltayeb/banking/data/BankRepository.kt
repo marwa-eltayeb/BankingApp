@@ -23,4 +23,8 @@ class BankRepository (private val bankDao: BankDao) {
     suspend fun increaseMoney(amount : Double, transferee: String) {
         bankDao.increaseMoney(amount, transferee)
     }
+
+    fun getTransations(): LiveData<List<Transaction>> {
+        return bankDao.getTransations()
+    }
 }

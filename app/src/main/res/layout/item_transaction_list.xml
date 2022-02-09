@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    cardview:cardCornerRadius="10dp"
+    cardview:cardElevation="5dp"
+    cardview:cardUseCompatPadding="true"
+    cardview:elevation="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/touch_feedback"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/txtTransferor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:padding="5dp"
+            android:textColor="@color/vDarkGray"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="John" />
+
+        <ImageView
+            android:id="@+id/imgArrow"
+            android:layout_width="50dp"
+            android:src="@drawable/ic_arrow"
+            android:layout_height="45dp"
+            android:layout_toEndOf="@id/txtTransferor"
+            android:contentDescription="@string/arrow" />
+
+        <TextView
+            android:id="@+id/txtTransferee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_toEndOf="@id/imgArrow"
+            android:layout_toStartOf="@id/txtAmount"
+            android:textColor="@color/vDarkGray"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="Mary" />
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtTransferor"
+            android:gravity="center|start"
+            android:padding="5dp"
+            android:textColor="@color/gray"
+            android:textSize="13sp"
+            tools:text="22-2-2022, 10:45 AM" />
+
+        <TextView
+            android:id="@+id/txtAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:gravity="center|start"
+            android:padding="5dp"
+            android:textColor="#FF5722"
+            android:textSize="18sp"
+            tools:text="$ 100.00" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

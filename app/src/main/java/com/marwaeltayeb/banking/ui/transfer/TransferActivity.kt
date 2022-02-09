@@ -13,6 +13,8 @@ import com.marwaeltayeb.banking.data.model.Client
 import com.marwaeltayeb.banking.data.model.Transaction
 import com.marwaeltayeb.banking.ui.clients.ClientAdapter
 import com.marwaeltayeb.banking.ui.clients.MainActivity
+import com.marwaeltayeb.banking.util.Const.Companion.AMOUNT
+import com.marwaeltayeb.banking.util.Const.Companion.TRANSFEROR
 
 class TransferActivity : AppCompatActivity() , ClientAdapter.OnItemClickListener{
 
@@ -27,11 +29,11 @@ class TransferActivity : AppCompatActivity() , ClientAdapter.OnItemClickListener
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transfer)
 
-        intent.getDoubleExtra("amount", 0.0).let {
+        intent.getDoubleExtra(AMOUNT, 0.0).let {
             amount = it
         }
 
-        intent.getStringExtra("transferor")?.let {
+        intent.getStringExtra(TRANSFEROR)?.let {
             transferor = it
         }
 
