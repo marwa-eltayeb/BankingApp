@@ -8,19 +8,14 @@ import android.text.InputType
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.marwaeltayeb.banking.R
 import com.marwaeltayeb.banking.data.model.Client
 import com.marwaeltayeb.banking.databinding.ActivityDetailsBinding
 import com.marwaeltayeb.banking.ui.transfer.TransferActivity
 import com.marwaeltayeb.banking.util.Const.Companion.CLIENT
-import android.R
-import android.content.Context
 
-import android.view.ViewGroup
-
-import android.widget.FrameLayout
 import com.marwaeltayeb.banking.util.Const.Companion.AMOUNT
 import com.marwaeltayeb.banking.util.Const.Companion.TRANSFEROR
-
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -39,7 +34,8 @@ class DetailsActivity : AppCompatActivity() {
         binding.txtName.text = currentClient.name
         binding.txtEmail.text = currentClient.email
         binding.txtPhoneNumber.text = currentClient.phoneNumber
-        binding.txtBalance.text = currentClient.balance.toString()
+        val formattedBalance: String = getString(R.string.amount, currentClient.balance)
+        binding.txtBalance.text = formattedBalance
 
         binding.btnTransferMoney.setOnClickListener {
             showDialog()

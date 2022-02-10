@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.marwaeltayeb.banking.R
-import com.marwaeltayeb.banking.data.model.Client
 import com.marwaeltayeb.banking.data.model.Transaction
 import com.marwaeltayeb.banking.databinding.ItemTransactionListBinding
 import com.marwaeltayeb.banking.util.formatDate

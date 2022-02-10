@@ -1,7 +1,6 @@
 package com.marwaeltayeb.banking.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Query
 import com.marwaeltayeb.banking.data.db.BankDao
 import com.marwaeltayeb.banking.data.model.Client
 import com.marwaeltayeb.banking.data.model.Transaction
