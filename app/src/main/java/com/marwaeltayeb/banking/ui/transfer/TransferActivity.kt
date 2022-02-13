@@ -50,6 +50,10 @@ class TransferActivity : AppCompatActivity() , ClientAdapter.OnItemClickListener
     }
 
     override fun onItemClick(client: Client) {
+        if (client.name == transferor){
+            Toast.makeText(this, "Transfer money to others only", Toast.LENGTH_LONG).show()
+            return
+        }
         val transaction = Transaction(System.currentTimeMillis(), transferor, client.name, amount)
         transferViewModel.insertTransaction(transaction)
         Toast.makeText(this, "Transaction Successfully Completed", Toast.LENGTH_SHORT).show()
