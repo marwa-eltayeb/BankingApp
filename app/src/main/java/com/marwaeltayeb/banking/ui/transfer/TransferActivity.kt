@@ -15,11 +15,13 @@ import com.marwaeltayeb.banking.ui.clients.ClientAdapter
 import com.marwaeltayeb.banking.ui.clients.MainActivity
 import com.marwaeltayeb.banking.util.Const.Companion.AMOUNT
 import com.marwaeltayeb.banking.util.Const.Companion.TRANSFEROR
+import com.marwaeltayeb.banking.util.Const.Companion.TRANSFEROR_ID
 
 class TransferActivity : AppCompatActivity() , ClientAdapter.OnItemClickListener{
 
     private var amount: Double = 0.0
     private var transferor: String = ""
+    private var transferorID: Int = 0
 
     private val transferViewModel: TransferViewModel by viewModels {
         TransferViewModelFactory((application as BankApplication).bankRepository)
@@ -37,6 +39,10 @@ class TransferActivity : AppCompatActivity() , ClientAdapter.OnItemClickListener
             transferor = it
         }
 
+        intent.getIntExtra(TRANSFEROR_ID, 0).let {
+            transferorID = it
+        }
+
         val recyclerView = findViewById<RecyclerView>(R.id.recReceiversList)
         val clientAdapter = ClientAdapter()
         recyclerView.adapter = clientAdapter
@@ -45,15 +51,15 @@ class TransferActivity : AppCompatActivity() , ClientAdapter.OnItemClickListener
 
         transferViewModel.loadAllClients()
         transferViewModel.getAllClients().observe(this) { clients ->
-            clients.let { clientAdapter.submitList(it) }
+            clients.let {
+                val list = clients.toMutableList()
+                list.removeAt(transferorID - 1)
+                clientAdapter.submitList(list)
+            }
         }
     }
 
     override fun onItemClick(client: Client) {
-        if (client.name == transferor){
-            Toast.makeText(this, "Transfer money to others only", Toast.LENGTH_LONG).show()
-            return
-        }
         val transaction = Transaction(System.currentTimeMillis(), transferor, client.name, amount)
         transferViewModel.insertTransaction(transaction)
         Toast.makeText(this, "Transaction Successfully Completed", Toast.LENGTH_SHORT).show()

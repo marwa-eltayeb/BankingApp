@@ -15,6 +15,7 @@ import com.marwaeltayeb.banking.util.Const.Companion.CLIENT
 import com.marwaeltayeb.banking.util.Const.Companion.AMOUNT
 import com.marwaeltayeb.banking.util.Const.Companion.TRANSFEROR
 import android.view.View
+import com.marwaeltayeb.banking.util.Const.Companion.TRANSFEROR_ID
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -75,6 +76,7 @@ class DetailsActivity : AppCompatActivity() {
                         }
                         intent = Intent(applicationContext, TransferActivity::class.java)
                         intent.putExtra(TRANSFEROR, currentClient.name)
+                        intent.putExtra(TRANSFEROR_ID, currentClient.client_id)
                         intent.putExtra(AMOUNT, amount)
                         startActivity(intent)
                         dialog.dismiss()
