@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeScreenActivity">
+
+    <ImageView
+        android:id="@+id/imgBank"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/ic_bank" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgBank"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        android:text="@string/basic_bank_system"
+        android:textColor="@color/vDarkGray"
+        android:textSize="25sp" />
+</RelativeLayout>

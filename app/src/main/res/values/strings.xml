@@ -6,7 +6,9 @@
     <string name="phone">Phone:</string>
     <string name="balance">Balance:</string>
     <string name="select_a_client">Select a client</string>
-    <string name="amount">$ %.2f</string>
+    <string name="amount">%.2f $</string>
     <string name="transactions">Transactions</string>
     <string name="arrow">arrow</string>
+    <string name="logo">logo</string>
+    <string name="basic_bank_system">Basic Bank system</string>
 </resources>
