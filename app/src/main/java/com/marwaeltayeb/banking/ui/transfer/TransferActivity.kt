@@ -6,11 +6,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.marwaeltayeb.banking.BankApplication
-import com.marwaeltayeb.banking.R
 import com.marwaeltayeb.banking.data.model.Client
 import com.marwaeltayeb.banking.data.model.Transaction
+import com.marwaeltayeb.banking.databinding.ActivityTransferBinding
 import com.marwaeltayeb.banking.ui.clients.ClientAdapter
 import com.marwaeltayeb.banking.ui.clients.MainActivity
 import com.marwaeltayeb.banking.util.Const.Companion.AMOUNT
@@ -18,6 +17,8 @@ import com.marwaeltayeb.banking.util.Const.Companion.TRANSFEROR
 import com.marwaeltayeb.banking.util.Const.Companion.TRANSFEROR_ID
 
 class TransferActivity : AppCompatActivity() , ClientAdapter.OnItemClickListener{
+
+    private lateinit var binding: ActivityTransferBinding
 
     private var amount: Double = 0.0
     private var transferor: String = ""
@@ -29,7 +30,8 @@ class TransferActivity : AppCompatActivity() , ClientAdapter.OnItemClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_transfer)
+        binding = ActivityTransferBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         intent.getDoubleExtra(AMOUNT, 0.0).let {
             amount = it
@@ -43,10 +45,9 @@ class TransferActivity : AppCompatActivity() , ClientAdapter.OnItemClickListener
             transferorID = it
         }
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recReceiversList)
         val clientAdapter = ClientAdapter()
-        recyclerView.adapter = clientAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recReceiversList.adapter = clientAdapter
+        binding.recReceiversList.layoutManager = LinearLayoutManager(this)
         clientAdapter.setOnItemClickListener(this)
 
         transferViewModel.loadAllClients()

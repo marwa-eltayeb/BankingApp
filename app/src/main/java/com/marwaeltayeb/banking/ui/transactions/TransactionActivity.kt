@@ -4,11 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.marwaeltayeb.banking.BankApplication
-import com.marwaeltayeb.banking.R
+import com.marwaeltayeb.banking.databinding.ActivityTransactionBinding
 
 class TransactionActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityTransactionBinding
 
     private val transactionViewModel: TransactionViewModel by viewModels {
         TransactionViewModelFactory((application as BankApplication).bankRepository)
@@ -16,12 +17,12 @@ class TransactionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_transaction)
+        binding = ActivityTransactionBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recTransactionsList)
         val transactionAdapter = TransactionAdapter()
-        recyclerView.adapter = transactionAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recTransactionsList.adapter = transactionAdapter
+        binding.recTransactionsList.layoutManager = LinearLayoutManager(this)
 
         transactionViewModel.loadAllTransactions()
         transactionViewModel.getAllTransactions().observe(this) { transactions ->

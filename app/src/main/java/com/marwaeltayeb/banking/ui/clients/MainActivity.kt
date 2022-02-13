@@ -7,15 +7,17 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.marwaeltayeb.banking.BankApplication
 import com.marwaeltayeb.banking.R
 import com.marwaeltayeb.banking.data.model.Client
+import com.marwaeltayeb.banking.databinding.ActivityMainBinding
 import com.marwaeltayeb.banking.ui.details.DetailsActivity
 import com.marwaeltayeb.banking.ui.transactions.TransactionActivity
 import com.marwaeltayeb.banking.util.Const.Companion.CLIENT
 
 class MainActivity : AppCompatActivity(), ClientAdapter.OnItemClickListener {
+
+    private lateinit var binding: ActivityMainBinding
 
     private val mainViewModel: MainViewModel by viewModels {
         MainViewModelFactory((application as BankApplication).bankRepository)
@@ -23,12 +25,12 @@ class MainActivity : AppCompatActivity(), ClientAdapter.OnItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recClientsList)
         val clientAdapter = ClientAdapter()
-        recyclerView.adapter = clientAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recClientsList.adapter = clientAdapter
+        binding.recClientsList.layoutManager = LinearLayoutManager(this)
         clientAdapter.setOnItemClickListener(this)
 
         mainViewModel.loadAllClients()
