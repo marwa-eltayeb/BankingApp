@@ -50,7 +50,6 @@ class TransferActivity : AppCompatActivity() , ClientAdapter.OnItemClickListener
         binding.recReceiversList.layoutManager = LinearLayoutManager(this)
         clientAdapter.setOnItemClickListener(this)
 
-        transferViewModel.loadAllClients()
         transferViewModel.getAllClients().observe(this) { clients ->
             clients.let {
                 val list = clients.toMutableList()

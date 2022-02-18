@@ -8,16 +8,8 @@ import kotlinx.coroutines.launch
 
 class TransferViewModel(private val bankRepository: BankRepository) : ViewModel() {
 
-    private var allClients: LiveData<List<Client>> = MutableLiveData()
-
-    fun loadAllClients() {
-        viewModelScope.launch {
-            allClients = bankRepository.getClients()
-        }
-    }
-
     fun getAllClients(): LiveData<List<Client>> {
-        return allClients
+        return bankRepository.getClients()
     }
 
     fun insertTransaction(transaction: Transaction){

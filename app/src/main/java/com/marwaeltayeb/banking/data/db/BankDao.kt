@@ -15,7 +15,7 @@ interface BankDao {
     fun getClients(): LiveData<List<Client>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertClient(client: Client)
+    suspend fun insertClients(words : List<Client>)
 
     @Query("DELETE FROM client_table")
     suspend fun deleteAll()
@@ -30,5 +30,5 @@ interface BankDao {
     suspend fun increaseMoney(amount : Double, transferee: String)
 
     @Query("SELECT * FROM transaction_table")
-    fun getTransations(): LiveData<List<Transaction>>
+    fun getTransactions(): LiveData<List<Transaction>>
 }

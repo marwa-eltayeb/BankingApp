@@ -43,29 +43,18 @@ abstract class BankDatabase : RoomDatabase(){
         }
 
         suspend fun populateDatabase(bankDao: BankDao) {
-            //bankDao.deleteAll()
-
-            var client = Client("John", "john@gamil.com", "34323342", 4000.00)
-            bankDao.insertClient(client)
-            client = Client("Emily", "emily@gamil.com", "98347844", 2000.00)
-            bankDao.insertClient(client)
-            client = Client("Chris", "chris@gamil.com", "87344375", 9000.00)
-            bankDao.insertClient(client)
-            client = Client("Mary", "mary@gamil.com", "4554345", 16000.00)
-            bankDao.insertClient(client)
-            client = Client("Jennifer", "jennifer@gamil.com", "9454845", 80000.00)
-            bankDao.insertClient(client)
-
-            client = Client("Robert", "robert@gamil.com", "78343932", 1000.00)
-            bankDao.insertClient(client)
-            client = Client("James", "james@gamil.com", "45643545", 3000.00)
-            bankDao.insertClient(client)
-            client = Client("Susan", "susan@gamil.com", "99993456", 50000.00)
-            bankDao.insertClient(client)
-            client = Client("Jessica", "jessica@gamil.com", "4345535", 7000.00)
-            bankDao.insertClient(client)
-            client = Client("Steven", "steven@gamil.com", "0309348", 5000.00)
-            bankDao.insertClient(client)
+            val clients = mutableListOf<Client>()
+            clients.add(Client("John", "john@gamil.com", "34323342", 4000.00))
+            clients.add(Client("Emily", "emily@gamil.com", "98347844", 2000.00))
+            clients.add(Client("Chris", "chris@gamil.com", "87344375", 9000.00))
+            clients.add(Client("Mary", "mary@gamil.com", "4554345", 16000.00))
+            clients.add(Client("Jennifer", "jennifer@gamil.com", "9454845", 80000.00))
+            clients.add(Client("Robert", "robert@gamil.com", "78343932", 1000.00))
+            clients.add(Client("James", "james@gamil.com", "45643545", 3000.00))
+            clients.add(Client("Susan", "susan@gamil.com", "99993456", 50000.00))
+            clients.add(Client("Jessica", "jessica@gamil.com", "4345535", 7000.00))
+            clients.add(Client("Steven", "steven@gamil.com", "0309348", 5000.00))
+            bankDao.insertClients(clients)
         }
     }
 }

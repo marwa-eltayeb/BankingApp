@@ -11,7 +11,7 @@ class TransactionViewModel(private val bankRepository: BankRepository) : ViewMod
 
     fun loadAllTransactions() {
         viewModelScope.launch {
-            allTransactions = bankRepository.getTransations()
+            allTransactions = bankRepository.getTransactions()
         }
     }
 

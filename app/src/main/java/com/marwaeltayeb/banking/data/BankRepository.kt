@@ -23,7 +23,7 @@ class BankRepository (private val bankDao: BankDao) {
         bankDao.increaseMoney(amount, transferee)
     }
 
-    fun getTransations(): LiveData<List<Transaction>> {
-        return bankDao.getTransations()
+    fun getTransactions(): LiveData<List<Transaction>> {
+        return bankDao.getTransactions()
     }
 }
