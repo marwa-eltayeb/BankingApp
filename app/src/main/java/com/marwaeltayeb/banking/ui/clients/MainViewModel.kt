@@ -6,9 +6,7 @@ import com.marwaeltayeb.banking.data.model.Client
 
 class MainViewModel(private val bankRepository: BankRepository) : ViewModel() {
 
-    fun getAllClients(): LiveData<List<Client>> {
-        return bankRepository.getClients()
-    }
+    val allClients = bankRepository.allClients
 }
 
 class MainViewModelFactory(private val bankRepository: BankRepository) : ViewModelProvider.Factory {

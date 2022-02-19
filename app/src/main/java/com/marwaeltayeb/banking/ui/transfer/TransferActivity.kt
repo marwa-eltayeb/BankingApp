@@ -50,7 +50,7 @@ class TransferActivity : AppCompatActivity() , ClientAdapter.OnItemClickListener
         binding.recReceiversList.layoutManager = LinearLayoutManager(this)
         clientAdapter.setOnItemClickListener(this)
 
-        transferViewModel.getAllClients().observe(this) { clients ->
+        transferViewModel.allClients.observe(this) { clients ->
             clients.let {
                 val list = clients.toMutableList()
                 list.removeAt(transferorID - 1)

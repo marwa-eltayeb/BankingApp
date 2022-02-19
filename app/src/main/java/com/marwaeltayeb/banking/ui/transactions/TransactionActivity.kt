@@ -24,8 +24,7 @@ class TransactionActivity : AppCompatActivity() {
         binding.recTransactionsList.adapter = transactionAdapter
         binding.recTransactionsList.layoutManager = LinearLayoutManager(this)
 
-        transactionViewModel.loadAllTransactions()
-        transactionViewModel.getAllTransactions().observe(this) { transactions ->
+        transactionViewModel.allTransactions.observe(this) { transactions ->
             transactions.let { transactionAdapter.submitList(it) }
         }
     }

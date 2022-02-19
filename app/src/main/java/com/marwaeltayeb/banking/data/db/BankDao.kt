@@ -29,6 +29,19 @@ interface BankDao {
     @Query("Update client_table set balance = balance + :amount where name = :transferee")
     suspend fun increaseMoney(amount : Double, transferee: String): Int
 
+    @androidx.room.Transaction
+    suspend fun insertAndUpdateTransaction(transaction: Transaction) : Int{
+        val idOfInsertedItem = insertTransaction(transaction)
+        if (idOfInsertedItem > 0){
+            val decreaseResult = decreaseMoney(transaction.amount, transaction.transferor)
+            val increaseResult = increaseMoney(transaction.amount, transaction.transferee)
+            if((decreaseResult > 0) && (increaseResult> 0)){
+                return 1
+            }
+        }
+        return -1
+    }
+
     @Query("SELECT * FROM transaction_table")
     fun getTransactions(): LiveData<List<Transaction>>
 }

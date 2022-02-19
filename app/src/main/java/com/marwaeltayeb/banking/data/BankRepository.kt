@@ -9,38 +9,15 @@ import kotlinx.coroutines.withContext
 
 class BankRepository(private val bankDao: BankDao) {
 
-    fun getClients(): LiveData<List<Client>> {
-        return bankDao.getClients()
-    }
+    val allClients: LiveData<List<Client>> = bankDao.getClients()
+    val allTransactions: LiveData<List<Transaction>> = bankDao.getTransactions()
 
-    suspend fun insertTransaction(transaction: Transaction): Result<Long> {
+    suspend fun insertTransactionAndUpdate(transaction: Transaction): Result<Int>{
         return try {
-            Result.success(bankDao.insertTransaction(transaction))
+            Result.success(bankDao.insertAndUpdateTransaction(transaction))
         } catch (e: Exception) {
             Result.failure(e)
         }
-    }
-
-    suspend fun decreaseMoney(amount: Double, transferor: String): Result<Int> =
-        withContext(Dispatchers.IO) {
-            return@withContext try {
-                Result.success(bankDao.decreaseMoney(amount, transferor))
-            } catch (e: Exception) {
-                Result.failure(e)
-            }
-        }
-
-    suspend fun increaseMoney(amount: Double, transferee: String): Result<Int> =
-        withContext(Dispatchers.IO) {
-            return@withContext try {
-                Result.success(bankDao.increaseMoney(amount, transferee))
-            } catch (e: Exception) {
-                Result.failure(e)
-            }
-        }
-
-    fun getTransactions(): LiveData<List<Transaction>> {
-        return bankDao.getTransactions()
     }
 }
 

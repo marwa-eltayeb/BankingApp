@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), ClientAdapter.OnItemClickListener {
         binding.recClientsList.layoutManager = LinearLayoutManager(this)
         clientAdapter.setOnItemClickListener(this)
 
-        mainViewModel.getAllClients().observe(this) { clients ->
+        mainViewModel.allClients.observe(this) { clients ->
             clientAdapter.submitList(clients)
         }
     }
