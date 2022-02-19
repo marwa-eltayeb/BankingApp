@@ -57,13 +57,18 @@ class TransferActivity : AppCompatActivity() , ClientAdapter.OnItemClickListener
                 clientAdapter.submitList(list)
             }
         }
+
+        transferViewModel.completeTask.observe(this, { isTaskCompleted ->
+            if (isTaskCompleted == true){
+                Toast.makeText(this, "Transaction Successfully Completed", Toast.LENGTH_SHORT).show()
+                intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+        })
     }
 
     override fun onItemClick(client: Client) {
         val transaction = Transaction(System.currentTimeMillis(), transferor, client.name, amount)
         transferViewModel.insertTransaction(transaction)
-        Toast.makeText(this, "Transaction Successfully Completed", Toast.LENGTH_SHORT).show()
-        intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
     }
 }

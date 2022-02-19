@@ -8,16 +8,24 @@ import kotlinx.coroutines.launch
 
 class TransferViewModel(private val bankRepository: BankRepository) : ViewModel() {
 
+    private val _completeTask = MutableLiveData<Boolean>()
+    val completeTask = _completeTask
+
     fun getAllClients(): LiveData<List<Client>> {
         return bankRepository.getClients()
     }
 
     fun insertTransaction(transaction: Transaction){
         viewModelScope.launch {
-            val idOfInsertedItem = bankRepository.insertTransaction(transaction)
-            if(idOfInsertedItem > 0){
-                bankRepository.decreaseMoney(transaction.amount, transaction.transferor)
-                bankRepository.increaseMoney(transaction.amount, transaction.transferee)
+            val insertionResult = bankRepository.insertTransaction(transaction)
+            if((insertionResult.getOrDefault(-1) > 0)){
+                val decreaseResult = bankRepository.decreaseMoney(transaction.amount, transaction.transferor)
+                val increaseResult = bankRepository.increaseMoney(transaction.amount, transaction.transferee)
+                if((decreaseResult.getOrDefault(-1) > 0) && (increaseResult.getOrDefault(-1) > 0)){
+                    _completeTask.value = true
+                }
+            }else{
+                _completeTask.value = false
             }
         }
     }
