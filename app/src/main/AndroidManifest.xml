@@ -45,5 +45,4 @@
             android:exported="false"
             android:label="Transactions" />
     </application>
-
 </manifest>

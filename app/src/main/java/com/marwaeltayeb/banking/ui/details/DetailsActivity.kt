@@ -43,7 +43,6 @@ class DetailsActivity : AppCompatActivity() {
 
     }
 
-
     private fun showDialog() {
         val alert: AlertDialog.Builder = AlertDialog.Builder(this)
         val editAmount = EditText(this)

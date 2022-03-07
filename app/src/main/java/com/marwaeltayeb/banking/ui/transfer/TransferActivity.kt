@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.marwaeltayeb.banking.BankApplication
 import com.marwaeltayeb.banking.data.model.Client
 import com.marwaeltayeb.banking.data.model.Transaction
 import com.marwaeltayeb.banking.databinding.ActivityTransferBinding
@@ -15,7 +14,9 @@ import com.marwaeltayeb.banking.ui.clients.MainActivity
 import com.marwaeltayeb.banking.util.Const.Companion.AMOUNT
 import com.marwaeltayeb.banking.util.Const.Companion.TRANSFEROR
 import com.marwaeltayeb.banking.util.Const.Companion.TRANSFEROR_ID
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TransferActivity : AppCompatActivity() , ClientAdapter.OnItemClickListener{
 
     private lateinit var binding: ActivityTransferBinding
@@ -24,9 +25,7 @@ class TransferActivity : AppCompatActivity() , ClientAdapter.OnItemClickListener
     private var transferor: String = ""
     private var transferorID: Int = 0
 
-    private val transferViewModel: TransferViewModel by viewModels {
-        TransferViewModelFactory((application as BankApplication).bankRepository)
-    }
+    private val transferViewModel: TransferViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

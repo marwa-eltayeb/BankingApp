@@ -7,21 +7,20 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.marwaeltayeb.banking.BankApplication
 import com.marwaeltayeb.banking.R
 import com.marwaeltayeb.banking.data.model.Client
 import com.marwaeltayeb.banking.databinding.ActivityMainBinding
 import com.marwaeltayeb.banking.ui.details.DetailsActivity
 import com.marwaeltayeb.banking.ui.transactions.TransactionActivity
 import com.marwaeltayeb.banking.util.Const.Companion.CLIENT
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), ClientAdapter.OnItemClickListener {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val mainViewModel: MainViewModel by viewModels {
-        MainViewModelFactory((application as BankApplication).bankRepository)
-    }
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
