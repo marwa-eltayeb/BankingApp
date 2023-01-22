@@ -6,7 +6,7 @@
     android:layout_margin="10dp"
     android:orientation="vertical"
     android:weightSum="4"
-    tools:context=".ui.details.DetailsActivity">
+    tools:context=".ui.details.DetailsFragment">
 
     <ImageView
         android:layout_width="wrap_content"

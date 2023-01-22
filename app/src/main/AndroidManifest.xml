@@ -12,37 +12,13 @@
         android:theme="@style/Theme.Banking">
 
         <activity
-            android:name=".ui.home.HomeScreenActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Splash">
-
+            android:name=".ui.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".ui.clients.MainActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".ui.details.DetailsActivity"
-            android:exported="false"
-            android:label="Client Details"
-            android:parentActivityName=".ui.details.DetailsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.marwaeltayeb.banking.ui.details.DetailsActivity" />
-        </activity>
-        <activity
-            android:name=".ui.transfer.TransferActivity"
-            android:exported="false"
-            android:label="Transfer Money" />
-        <activity
-            android:name=".ui.transactions.TransactionActivity"
-            android:exported="false"
-            android:label="Transactions" />
     </application>
 </manifest>

@@ -1,36 +1,42 @@
 package com.marwaeltayeb.banking.ui.details
 
-import android.content.Intent
 import android.content.res.Configuration
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.view.LayoutInflater
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import com.marwaeltayeb.banking.R
 import com.marwaeltayeb.banking.data.model.Client
-import com.marwaeltayeb.banking.databinding.ActivityDetailsBinding
-import com.marwaeltayeb.banking.ui.transfer.TransferActivity
-import com.marwaeltayeb.banking.util.Const.Companion.CLIENT
-import com.marwaeltayeb.banking.util.Const.Companion.AMOUNT
-import com.marwaeltayeb.banking.util.Const.Companion.TRANSFEROR
 import android.view.View
+import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.marwaeltayeb.banking.databinding.FragmentDetailsBinding
+import com.marwaeltayeb.banking.util.Const.Companion.AMOUNT
+import com.marwaeltayeb.banking.util.Const.Companion.CLIENT
+import com.marwaeltayeb.banking.util.Const.Companion.TRANSFEROR
 import com.marwaeltayeb.banking.util.Const.Companion.TRANSFEROR_ID
 
-class DetailsActivity : AppCompatActivity() {
+class DetailsFragment : Fragment() {
 
-    private lateinit var binding: ActivityDetailsBinding
+    private var _binding: FragmentDetailsBinding? = null
+    private val binding get() = _binding!!
     private lateinit var currentClient: Client
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        (intent.getParcelableExtra(CLIENT) as Client?)?.let {
-            currentClient = it
-        }
+        currentClient = arguments?.get(CLIENT) as Client
+    }
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.txtName.text = currentClient.name
         binding.txtEmail.text = currentClient.email
         binding.txtPhoneNumber.text = currentClient.phoneNumber
@@ -40,12 +46,11 @@ class DetailsActivity : AppCompatActivity() {
         binding.btnTransferMoney.setOnClickListener {
             showDialog()
         }
-
     }
 
     private fun showDialog() {
-        val alert: AlertDialog.Builder = AlertDialog.Builder(this)
-        val editAmount = EditText(this)
+        val alert: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        val editAmount = EditText(requireContext())
         editAmount.inputType = InputType.TYPE_CLASS_NUMBER
         editAmount.setRawInputType(Configuration.KEYBOARD_12KEY)
         editAmount.hint = "Amount"
@@ -73,11 +78,8 @@ class DetailsActivity : AppCompatActivity() {
                             editAmount.error = "You do not have enough balance"
                             return
                         }
-                        intent = Intent(applicationContext, TransferActivity::class.java)
-                        intent.putExtra(TRANSFEROR, currentClient.name)
-                        intent.putExtra(TRANSFEROR_ID, currentClient.client_id)
-                        intent.putExtra(AMOUNT, amount)
-                        startActivity(intent)
+                        val bundle = bundleOf(TRANSFEROR to currentClient.name, TRANSFEROR_ID to currentClient.client_id, AMOUNT to amount)
+                        findNavController().navigate(R.id.action_detailsFragment_to_transferFragment, bundle)
                         dialog.dismiss()
                     }
                 }
